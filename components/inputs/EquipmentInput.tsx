@@ -9,19 +9,35 @@ interface EquipmentInputProps {
 
 export function EquipmentInput(props: EquipmentInputProps) {
   const { label, equipment } = props;
-  const show_detail = useSignal(true);
+  const show_detail = useSignal(false);
 
   return (
     <div class="block p-2 my-2 border rounded border-gray-300 dark:border-gray-600">
       <div class="border-b border-gray-700 dark:border-gray-200 mb-2">
         <button
           type="button"
-          class="text-xl text-left w-full font-semibold mb-2 text-gray-900 dark:text-white"
+          class="flex items-center text-xl text-left w-full font-semibold mb-2 text-gray-900 dark:text-white"
           onClick={() => {
             show_detail.value = !show_detail.value;
           }}
         >
-          {label}
+          <span>{label}</span>
+          <svg
+            data-accordion-icon
+            class="mx-1 mt-1.5 w-3 h-3 rotate-180 shrink-0"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5 5 1 1 5"
+            />
+          </svg>
         </button>
       </div>
       <div
