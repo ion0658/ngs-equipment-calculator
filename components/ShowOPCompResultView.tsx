@@ -11,8 +11,8 @@ interface ShowOPCompResultProps {
 }
 
 export function ShowOPCompResult(props: ShowOPCompResultProps) {
-  const avg_dmg_1 = useSignal(0);
-  const avg_dmg_2 = useSignal(0);
+  const avg_dmg_1 = useSignal(1);
+  const avg_dmg_2 = useSignal(1);
   return (
     <>
       <h1 class="font-semibold mb-2 text-gray-900 dark:text-white">

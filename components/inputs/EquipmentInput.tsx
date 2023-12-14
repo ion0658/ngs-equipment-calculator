@@ -9,7 +9,7 @@ interface EquipmentInputProps {
 
 export function EquipmentInput(props: EquipmentInputProps) {
   const { label, equipment } = props;
-  const show_detail = useSignal(false);
+  const show_detail = useSignal(true);
 
   return (
     <div class="block p-2 my-2 border rounded border-gray-300 dark:border-gray-600">
@@ -17,14 +17,35 @@ export function EquipmentInput(props: EquipmentInputProps) {
         <button
           type="button"
           class="flex items-center text-xl text-left w-full font-semibold mb-2 text-gray-900 dark:text-white"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             show_detail.value = !show_detail.value;
           }}
         >
           <span>{label}</span>
+          <button
+            type="button"
+            class="cursor-not-allowed ms-auto me-1 my-auto p-1 border rounded border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:bg-blue-700 hover:text-white dark:hover:text-white dark:hover:bg-blue-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log(equipment.value);
+            }}
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            class="cursor-not-allowed mx-1 my-auto p-1 border rounded border-yellow-700 dark:border-yellow-300 text-yellow-700 dark:text-yellow-300 hover:bg-yellow-700 hover:text-white dark:hover:text-white dark:hover:bg-yellow-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log(equipment.value);
+            }}
+          >
+            Load
+          </button>
           <svg
             data-accordion-icon
-            class="mx-1 mt-1.5 w-3 h-3 rotate-180 shrink-0"
+            class="mx-2 mt-1.5 w-3 h-3 rotate-180 shrink-0"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -1,3 +1,3 @@
 export function WeaponCompView() {
-  return <div>WeaponCompView</div>;
+  return <div>Coming Soon!</div>;
 }
