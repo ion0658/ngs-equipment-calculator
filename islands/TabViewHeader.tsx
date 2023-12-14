@@ -1,5 +1,5 @@
 import type { Signal } from "@preact/signals";
-import { TabViewHeaderItem } from "../(_components)/TabViewHeaderItem.tsx";
+import { TabViewHeaderItem } from "../components/TabViewHeaderItem.tsx";
 
 interface TabViewHeaderProps {
   selected_index: Signal<number>;

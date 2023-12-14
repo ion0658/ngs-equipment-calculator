@@ -1,6 +1,6 @@
 import type { Signal } from "@preact/signals";
-import { OpCompView } from "../(_components)/OPCompView.tsx";
-import { WeaponCompView } from "../(_components)/WeaponCompView.tsx";
+import { OpCompView } from "../components/OPCompView.tsx";
+import { WeaponCompView } from "../components/WeaponCompView.tsx";
 
 interface TabViewBodyProps {
   selected_index: Signal<number>;

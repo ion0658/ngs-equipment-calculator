@@ -1,4 +1,4 @@
-import type { Options } from "../../../libs/type.d.ts";
+import type { Options } from "../../libs/type.d.ts";
 
 interface OptionInputProps {
   label: string;
@@ -31,7 +31,7 @@ export function OptionInput(props: OptionInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="damage_bonus"
           value={options.damage_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             onChange({
               ...options,
               damage_bonus: Number(e.currentTarget.value),
@@ -53,7 +53,7 @@ export function OptionInput(props: OptionInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="minimum_power_bonus"
           value={options.minimum_power_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             onChange({
               ...options,
               minimum_power_bonus: Number(e.currentTarget.value),
@@ -75,7 +75,7 @@ export function OptionInput(props: OptionInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="critical_damage_bonus"
           value={options.critical_damage_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             onChange({
               ...options,
               critical_damage_bonus: Number(e.currentTarget.value),
@@ -97,7 +97,7 @@ export function OptionInput(props: OptionInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="critical_percentage_bonus"
           value={options.critical_percentage_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             onChange({
               ...options,
               critical_percentage_bonus: Number(e.currentTarget.value),

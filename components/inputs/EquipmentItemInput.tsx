@@ -1,4 +1,4 @@
-import type { EquipmentItem } from "../../../libs/type.d.ts";
+import type { EquipmentItem } from "../../libs/type.d.ts";
 import { OptionInput } from "./OptionInput.tsx";
 
 interface EquipmentItemInputProps {
@@ -9,10 +9,12 @@ interface EquipmentItemInputProps {
 
 export function EquipmentItemInput(props: EquipmentItemInputProps) {
   const { label, equipment, onChange } = props;
+
   return (
     <div class="block">
       <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
         {label}
+        <br />
       </h3>
       <div>
         <OptionInput

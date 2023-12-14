@@ -5,8 +5,8 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $_islands_TabViewBody from "./routes/(_islands)/TabViewBody.tsx";
-import * as $_islands_TabViewHeader from "./routes/(_islands)/TabViewHeader.tsx";
+import * as $TabViewBody from "./islands/TabViewBody.tsx";
+import * as $TabViewHeader from "./islands/TabViewHeader.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -16,8 +16,8 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
-    "./routes/(_islands)/TabViewBody.tsx": $_islands_TabViewBody,
-    "./routes/(_islands)/TabViewHeader.tsx": $_islands_TabViewHeader,
+    "./islands/TabViewBody.tsx": $TabViewBody,
+    "./islands/TabViewHeader.tsx": $TabViewHeader,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

@@ -1,5 +1,5 @@
 import type { Signal } from "@preact/signals";
-import type { Character } from "../../../libs/type.d.ts";
+import type { Character } from "../../libs/type.d.ts";
 
 interface CharacterInputProps {
   label: string;

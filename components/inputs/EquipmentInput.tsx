@@ -1,6 +1,7 @@
-import type { Equipment, EquipmentItem } from "../../../libs/type.d.ts";
+import type { Equipment, EquipmentItem } from "../../libs/type.d.ts";
 import { type Signal, useSignal } from "@preact/signals";
 import { EquipmentItemInput } from "./EquipmentItemInput.tsx";
+import { calcDamageBonus } from "../../libs/lib.ts";
 
 interface EquipmentInputProps {
   label: string;
@@ -22,6 +23,8 @@ export function EquipmentInput(props: EquipmentInputProps) {
           }}
         >
           {label}
+          <br />
+          {calcDamageBonus(equipment.value) * 100}%
         </button>
       </div>
       <div
@@ -36,6 +39,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
                 ...equipment.value,
                 weapon_op: eq,
               };
+              return eq;
             }}
           />
         </div>
@@ -48,6 +52,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
                 ...equipment.value,
                 unit1_op: eq,
               };
+              return eq;
             }}
           />
         </div>
@@ -60,6 +65,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
                 ...equipment.value,
                 unit2_op: eq,
               };
+              return eq;
             }}
           />
         </div>
@@ -72,6 +78,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
                 ...equipment.value,
                 unit3_op: eq,
               };
+              return eq;
             }}
           />
         </div>

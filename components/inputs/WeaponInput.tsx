@@ -1,5 +1,5 @@
 import { Signal } from "@preact/signals";
-import type { Weapon } from "../../../libs/type.d.ts";
+import type { Weapon } from "../../libs/type.d.ts";
 
 interface WeaponInputProps {
   weapon: Signal<Weapon>;
@@ -97,13 +97,13 @@ export function WeaponInput(props: WeaponInputProps) {
           id="minimum_power_bouns"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="minimum_power_bouns"
-          value={weapon.value.potential_damage_bounous.minimum_power_bouns}
+          value={weapon.value.potential_damage_bounous.minimum_power_bonus}
           onInput={(e) => {
             weapon.value = {
               ...weapon.value,
               potential_damage_bounous: {
                 ...weapon.value.potential_damage_bounous,
-                minimum_power_bouns: Number(e.currentTarget.value),
+                minimum_power_bonus: Number(e.currentTarget.value),
               },
             };
           }}

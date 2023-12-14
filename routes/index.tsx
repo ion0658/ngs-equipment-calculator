@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
-import { TabViewHeaders } from "./(_islands)/TabViewHeader.tsx";
-import { TabViewBody } from "./(_islands)/TabViewBody.tsx";
+import { TabViewHeaders } from "../islands/TabViewHeader.tsx";
+import { TabViewBody } from "../islands/TabViewBody.tsx";
 
 export default function Home() {
   const index = useSignal(0);

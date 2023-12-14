@@ -1,9 +1,9 @@
 import { useSignal } from "@preact/signals";
 import { WeaponInput } from "./inputs/WeaponInput.tsx";
 import { CharacterInput } from "./inputs/CharactorInput.tsx";
-import { initEquipment } from "../../libs/lib.ts";
+import { initEquipment } from "../libs/lib.ts";
 import { EquipmentInput } from "./inputs/EquipmentInput.tsx";
-import type { Character, Equipment, Weapon } from "../../libs/type.d.ts";
+import type { Character, Equipment, Weapon } from "../libs/type.d.ts";
 
 export function OpCompView() {
   const weapon = useSignal<Weapon>({
