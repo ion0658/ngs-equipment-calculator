@@ -26,7 +26,7 @@ export function WeaponInput(props: WeaponInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="offensive_power"
           value={weapon.value.offensive_power}
-          onInput={(e) => {
+          onChange={(e) => {
             weapon.value = {
               ...weapon.value,
               offensive_power: Number(e.currentTarget.value),
@@ -49,7 +49,7 @@ export function WeaponInput(props: WeaponInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="minimum_power_percent"
           value={weapon.value.minimum_power_percent}
-          onInput={(e) => {
+          onChange={(e) => {
             weapon.value = {
               ...weapon.value,
               minimum_power_percent: Number(e.currentTarget.value),
@@ -73,7 +73,7 @@ export function WeaponInput(props: WeaponInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="damage_bonus"
           value={weapon.value.potential_damage_bounous.damage_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             weapon.value = {
               ...weapon.value,
               potential_damage_bounous: {
@@ -98,7 +98,7 @@ export function WeaponInput(props: WeaponInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="minimum_power_bouns"
           value={weapon.value.potential_damage_bounous.minimum_power_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             weapon.value = {
               ...weapon.value,
               potential_damage_bounous: {
@@ -123,7 +123,7 @@ export function WeaponInput(props: WeaponInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="critical_damage_bonus"
           value={weapon.value.potential_damage_bounous.critical_damage_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             weapon.value = {
               ...weapon.value,
               potential_damage_bounous: {
@@ -149,7 +149,7 @@ export function WeaponInput(props: WeaponInputProps) {
           name="critical_percentage_bonus"
           value={weapon.value.potential_damage_bounous
             .critical_percentage_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             weapon.value = {
               ...weapon.value,
               potential_damage_bounous: {

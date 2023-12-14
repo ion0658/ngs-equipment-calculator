@@ -3,7 +3,9 @@ import { WeaponInput } from "./inputs/WeaponInput.tsx";
 import { CharacterInput } from "./inputs/CharactorInput.tsx";
 import { initEquipment } from "../libs/lib.ts";
 import { EquipmentInput } from "./inputs/EquipmentInput.tsx";
+import { ShowOPCompResult } from "./ShowOPCompResultView.tsx    ";
 import type { Character, Equipment, Weapon } from "../libs/type.d.ts";
+import { eq } from "$std/semver/eq.ts";
 
 export function OpCompView() {
   const weapon = useSignal<Weapon>({
@@ -39,6 +41,13 @@ export function OpCompView() {
         <CharacterInput label="Enemy" character={enemy} />
       </aside>
       <main class="px-4 py-2 w-full">
+        <ShowOPCompResult
+          weapon={weapon.value}
+          player={player.value}
+          enemy={enemy.value}
+          equipment1={equipment1.value}
+          equipment2={equipment2.value}
+        />
         <EquipmentInput label="Equipment 1" equipment={equipment1} />
         <EquipmentInput label="Equipment 2" equipment={equipment2} />
       </main>

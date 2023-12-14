@@ -27,7 +27,7 @@ export function CharacterInput(props: CharacterInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="base_offensive_power"
           value={character.value.base_offensive_power}
-          onInput={(e) => {
+          onChange={(e) => {
             character.value = {
               ...character.value,
               base_offensive_power: Number(e.currentTarget.value),
@@ -50,7 +50,7 @@ export function CharacterInput(props: CharacterInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="defensive_power"
           value={character.value.defensive_power}
-          onInput={(e) => {
+          onChange={(e) => {
             character.value = {
               ...character.value,
               defensive_power: Number(e.currentTarget.value),
@@ -73,7 +73,7 @@ export function CharacterInput(props: CharacterInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="base_critical_percentage"
           value={character.value.base_critical_percentage}
-          onInput={(e) => {
+          onChange={(e) => {
             character.value = {
               ...character.value,
               base_critical_percentage: Number(e.currentTarget.value),
@@ -95,7 +95,7 @@ export function CharacterInput(props: CharacterInputProps) {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="base_critical_damage_bonus"
           value={character.value.base_critical_damage_bonus}
-          onInput={(e) => {
+          onChange={(e) => {
             character.value = {
               ...character.value,
               base_critical_damage_bonus: Number(e.currentTarget.value),

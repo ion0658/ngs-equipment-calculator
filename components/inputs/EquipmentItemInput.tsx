@@ -1,5 +1,11 @@
 import type { EquipmentItem } from "../../libs/type.d.ts";
 import { OptionInput } from "./OptionInput.tsx";
+import {
+  calcCriticalDamageBonus1,
+  calcCriticalPercentageBonus1,
+  calcDamageBonus1,
+  calcMinimumDamageBonus1,
+} from "../../libs/lib.ts";
 
 interface EquipmentItemInputProps {
   label: string;
@@ -13,8 +19,10 @@ export function EquipmentItemInput(props: EquipmentItemInputProps) {
   return (
     <div class="block">
       <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
-        {label}
-        <br />
+        {label} ({(calcDamageBonus1(equipment) - 1) * 100}% /{" "}
+        {(calcMinimumDamageBonus1(equipment) - 1) * 100}% /{" "}
+        {(calcCriticalDamageBonus1(equipment) - 1) * 100}% /{" "}
+        {calcCriticalPercentageBonus1(equipment) * 100}%)
       </h3>
       <div>
         <OptionInput

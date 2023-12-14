@@ -1,7 +1,6 @@
 import type { Equipment, EquipmentItem } from "../../libs/type.d.ts";
 import { type Signal, useSignal } from "@preact/signals";
 import { EquipmentItemInput } from "./EquipmentItemInput.tsx";
-import { calcDamageBonus } from "../../libs/lib.ts";
 
 interface EquipmentInputProps {
   label: string;
@@ -10,7 +9,7 @@ interface EquipmentInputProps {
 
 export function EquipmentInput(props: EquipmentInputProps) {
   const { label, equipment } = props;
-  const show_detail = useSignal(false);
+  const show_detail = useSignal(true);
 
   return (
     <div class="block p-2 my-2 border rounded border-gray-300 dark:border-gray-600">
@@ -23,8 +22,6 @@ export function EquipmentInput(props: EquipmentInputProps) {
           }}
         >
           {label}
-          <br />
-          {calcDamageBonus(equipment.value) * 100}%
         </button>
       </div>
       <div
