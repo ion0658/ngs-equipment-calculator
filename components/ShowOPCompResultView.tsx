@@ -16,7 +16,7 @@ export function ShowOPCompResult(props: ShowOPCompResultProps) {
   return (
     <>
       <h1 class="font-semibold mb-2 text-gray-900 dark:text-white">
-        Equipment1 / Equipment2(%): {avg_dmg_1.value / avg_dmg_2.value * 100} %
+        Equipment1 / Equipment2: {avg_dmg_1.value / avg_dmg_2.value * 100} %
       </h1>
       <div class="flex gap-2">
         <div class="flex-1 border rounded p-2 border-gray-300 dark:border-gray-600">
