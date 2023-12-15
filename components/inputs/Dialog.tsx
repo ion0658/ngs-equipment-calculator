@@ -10,7 +10,11 @@ type Props = JSX.HTMLAttributes<HTMLDialogElement> & DialogProps;
 
 export function Dialog(props: Props) {
   return (
-    <dialog ref={props.dialog_ref} onClick={props.close} class="dialog">
+    <dialog
+      ref={props.dialog_ref}
+      onClick={props.close}
+      class="dialog bg-transparent"
+    >
       <div onClick={(e) => e.stopPropagation()}>
         {props.children}
       </div>
