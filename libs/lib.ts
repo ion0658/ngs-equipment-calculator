@@ -7,26 +7,103 @@ const DEFAULT_OP: Options = {
   critical_percentage_bonus: 0,
 };
 
-const DEFAULT_EQUIPMENT_ITEM = {
+const DEFAULT_EQUIPMENT_WEAPON = {
   base_status: DEFAULT_OP,
-  op1: DEFAULT_OP,
-  op2: DEFAULT_OP,
-  op3: DEFAULT_OP,
-  op4: DEFAULT_OP,
-  op5: DEFAULT_OP,
-  op6: DEFAULT_OP,
+  op1: {
+    damage_bonus: 3.75,
+    minimum_power_bonus: 0,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op2: {
+    damage_bonus: 2.5,
+    minimum_power_bonus: 5,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op3: {
+    damage_bonus: 3.5,
+    minimum_power_bonus: 0,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op4: {
+    damage_bonus: 3,
+    minimum_power_bonus: 2.25,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op5: {
+    damage_bonus: 4,
+    minimum_power_bonus: 0,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op6: {
+    damage_bonus: 4,
+    minimum_power_bonus: 3,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op7: DEFAULT_OP,
+  op8: DEFAULT_OP,
+};
+
+const DEFAULT_EQUIPMENT_UNIT = {
+  base_status: {
+    damage_bonus: 4.5,
+    minimum_power_bonus: 0,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op1: {
+    damage_bonus: 3.75,
+    minimum_power_bonus: 0,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op2: {
+    damage_bonus: 2.5,
+    minimum_power_bonus: 5,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op3: {
+    damage_bonus: 3.5,
+    minimum_power_bonus: 0,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op4: {
+    damage_bonus: 3,
+    minimum_power_bonus: 2.25,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op5: {
+    damage_bonus: 4,
+    minimum_power_bonus: 0,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
+  op6: {
+    damage_bonus: 4,
+    minimum_power_bonus: 3,
+    critical_damage_bonus: 0,
+    critical_percentage_bonus: 0,
+  },
   op7: DEFAULT_OP,
   op8: DEFAULT_OP,
 };
 
 export function initEquipment(label: string): Equipment {
-  return {
+  return JSON.parse(JSON.stringify({
     label: label,
-    weapon_op: JSON.parse(JSON.stringify(DEFAULT_EQUIPMENT_ITEM)),
-    unit1_op: JSON.parse(JSON.stringify(DEFAULT_EQUIPMENT_ITEM)),
-    unit2_op: JSON.parse(JSON.stringify(DEFAULT_EQUIPMENT_ITEM)),
-    unit3_op: JSON.parse(JSON.stringify(DEFAULT_EQUIPMENT_ITEM)),
-  };
+    weapon_op: DEFAULT_EQUIPMENT_WEAPON,
+    unit1_op: DEFAULT_EQUIPMENT_UNIT,
+    unit2_op: DEFAULT_EQUIPMENT_UNIT,
+    unit3_op: DEFAULT_EQUIPMENT_UNIT,
+  }));
 }
 
 export function calcDamageBonus1(equipment: EquipmentItem): number {

@@ -26,7 +26,6 @@ export function OPCompResult(props: OPCompResultProps) {
     (1 + weapon.potential_damage_bounous.damage_bonus / 100);
 
   const minimum_weapon_damage = calcMinimumWeaponDamage(weapon, equipment);
-
   const critical_damage_bonus = calcCriticalDamageBonus(equipment) *
     (1 + weapon.potential_damage_bounous.critical_damage_bonus / 100) *
     (1 + player.base_critical_damage_bonus / 100);

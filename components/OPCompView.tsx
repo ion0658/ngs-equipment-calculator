@@ -5,14 +5,13 @@ import { initEquipment } from "../libs/lib.ts";
 import { EquipmentInput } from "./inputs/EquipmentInput.tsx";
 import { ShowOPCompResult } from "./ShowOPCompResultView.tsx    ";
 import type { Character, Equipment, Weapon } from "../libs/type.d.ts";
-import { eq } from "$std/semver/eq.ts";
 
 export function OpCompView() {
   const weapon = useSignal<Weapon>({
     offensive_power: 1000,
     minimum_power_percent: 50,
     potential_damage_bounous: {
-      damage_bonus: 30,
+      damage_bonus: 0,
       minimum_power_bonus: 0,
       critical_damage_bonus: 0,
       critical_percentage_bonus: 0,
