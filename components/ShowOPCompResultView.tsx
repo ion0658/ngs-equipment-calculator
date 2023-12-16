@@ -1,6 +1,13 @@
 import { useSignal } from "@preact/signals";
 import type { Character, Equipment, Weapon } from "../libs/type.d.ts";
 import { OPCompResult } from "./inputs/OPCompResult.tsx";
+import {
+  calcCriticalDamageBonus,
+  calcCriticalPercentageBonus,
+  calcDamage,
+  calcDamageBonus,
+  calcMinimumWeaponDamage,
+} from "../libs/lib.ts";
 
 interface ShowOPCompResultProps {
   weapon: Weapon;
@@ -11,36 +18,76 @@ interface ShowOPCompResultProps {
 }
 
 export function ShowOPCompResult(props: ShowOPCompResultProps) {
-  const avg_dmg_1 = useSignal(1);
-  const avg_dmg_2 = useSignal(1);
+  const { weapon, player, enemy, equipment1, equipment2 } = props;
+  const eq_1_result = {
+    avg_dmg: useSignal(1),
+    min_dmg: useSignal(1),
+    crit_dmg: useSignal(1),
+  };
+  const eq_2_result = {
+    avg_dmg: useSignal(1),
+    min_dmg: useSignal(1),
+    crit_dmg: useSignal(1),
+  };
+
   return (
     <>
-      <h1 class="font-semibold mb-2 text-gray-900 dark:text-white">
-        Equipment1 / Equipment2: {avg_dmg_1.value / avg_dmg_2.value * 100} %
-      </h1>
       <div class="flex gap-2">
         <div class="flex-1 border rounded p-2 border-gray-300 dark:border-gray-600">
           <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
-            Equipment 1
+            {equipment1.label} / {equipment2.label}
+          </h3>
+          <div>
+            <label class="text-gray-700 dark:text-white text-sm font-bold mb-2">
+              Average Damage:{" x"}
+            </label>
+            <span class="text-gray-700 dark:text-white text-sm font-bold mb-2">
+              {eq_1_result.avg_dmg.value / eq_2_result.avg_dmg.value}
+            </span>
+          </div>
+          <div>
+            <label class="text-gray-700 dark:text-white text-sm font-bold mb-2">
+              Minimum Damage:{" x"}
+            </label>
+            <span class="text-gray-700 dark:text-white text-sm font-bold mb-2">
+              {eq_1_result.min_dmg.value / eq_2_result.min_dmg.value}
+            </span>
+          </div>
+          <div>
+            <label class="text-gray-700 dark:text-white text-sm font-bold mb-2">
+              Critical Damage:{" x"}
+            </label>
+            <span class="text-gray-700 dark:text-white text-sm font-bold mb-2">
+              {eq_1_result.crit_dmg.value / eq_2_result.crit_dmg.value}
+            </span>
+          </div>
+        </div>
+        <div class="flex-1 border rounded p-2 border-gray-300 dark:border-gray-600">
+          <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
+            {equipment1.label}
           </h3>
           <OPCompResult
-            weapon={props.weapon}
-            player={props.player}
-            enemy={props.enemy}
-            equipment={props.equipment1}
-            avg_dmg={avg_dmg_1}
+            weapon={weapon}
+            player={player}
+            enemy={enemy}
+            equipment={equipment1}
+            avg_dmg={eq_1_result.avg_dmg}
+            min_dmg={eq_1_result.min_dmg}
+            crit_dmg={eq_1_result.crit_dmg}
           />
         </div>
         <div class="flex-1 border rounded p-2 border-gray-300 dark:border-gray-600">
           <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
-            Equipment 2
+            {equipment2.label}
           </h3>
           <OPCompResult
-            weapon={props.weapon}
-            player={props.player}
-            enemy={props.enemy}
-            equipment={props.equipment2}
-            avg_dmg={avg_dmg_2}
+            weapon={weapon}
+            player={player}
+            enemy={enemy}
+            equipment={equipment2}
+            avg_dmg={eq_2_result.avg_dmg}
+            min_dmg={eq_2_result.min_dmg}
+            crit_dmg={eq_2_result.crit_dmg}
           />
         </div>
       </div>

@@ -30,8 +30,8 @@ export function OpCompView() {
     base_critical_percentage: 5,
     base_critical_damage_bonus: 20,
   });
-  const equipment1 = useSignal<Equipment>(initEquipment());
-  const equipment2 = useSignal<Equipment>(initEquipment());
+  const equipment1 = useSignal<Equipment>(initEquipment("Equipment 1"));
+  const equipment2 = useSignal<Equipment>(initEquipment("Equipment 2"));
 
   return (
     <div class="flex flex-1">
@@ -48,8 +48,8 @@ export function OpCompView() {
           equipment1={equipment1.value}
           equipment2={equipment2.value}
         />
-        <EquipmentInput label="Equipment 1" equipment={equipment1} />
-        <EquipmentInput label="Equipment 2" equipment={equipment2} />
+        <EquipmentInput equipment={equipment1} />
+        <EquipmentInput equipment={equipment2} />
       </main>
     </div>
   );

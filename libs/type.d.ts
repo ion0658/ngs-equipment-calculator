@@ -24,6 +24,7 @@ export interface EquipmentItem {
 }
 
 export interface Equipment {
+  label: string;
   weapon_op: EquipmentItem;
   unit1_op: EquipmentItem;
   unit2_op: EquipmentItem;

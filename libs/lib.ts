@@ -1,4 +1,4 @@
-import type { Equipment, EquipmentItem, Options } from "./type.d.ts";
+import type { Equipment, EquipmentItem, Options, Weapon } from "./type.d.ts";
 
 const DEFAULT_OP: Options = {
   damage_bonus: 0,
@@ -19,8 +19,9 @@ const DEFAULT_EQUIPMENT_ITEM = {
   op8: DEFAULT_OP,
 };
 
-export function initEquipment(): Equipment {
+export function initEquipment(label: string): Equipment {
   return {
+    label: label,
     weapon_op: JSON.parse(JSON.stringify(DEFAULT_EQUIPMENT_ITEM)),
     unit1_op: JSON.parse(JSON.stringify(DEFAULT_EQUIPMENT_ITEM)),
     unit2_op: JSON.parse(JSON.stringify(DEFAULT_EQUIPMENT_ITEM)),
@@ -64,6 +65,16 @@ export function calcMinimumDamageBonus(equipment: Equipment): number {
     calcMinimumDamageBonus1(equipment.unit1_op) *
     calcMinimumDamageBonus1(equipment.unit2_op) *
     calcMinimumDamageBonus1(equipment.unit3_op);
+}
+
+export function calcMinimumWeaponDamage(
+  weapon: Weapon,
+  equipment: Equipment,
+): number {
+  const min = calcMinimumDamageBonus(equipment) *
+    (1 + weapon.potential_damage_bounous.minimum_power_bonus / 100) *
+    weapon.minimum_power_percent;
+  return min > 100 ? 100 : min;
 }
 
 export function calcCriticalDamageBonus1(equipment: EquipmentItem): number {

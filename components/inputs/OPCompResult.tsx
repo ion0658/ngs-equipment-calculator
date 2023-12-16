@@ -4,7 +4,7 @@ import {
   calcCriticalPercentageBonus,
   calcDamage,
   calcDamageBonus,
-  calcMinimumDamageBonus,
+  calcMinimumWeaponDamage,
 } from "../../libs/lib.ts";
 import { Signal } from "@preact/signals";
 
@@ -14,21 +14,18 @@ interface OPCompResultProps {
   enemy: Character;
   equipment: Equipment;
   avg_dmg: Signal<number>;
+  min_dmg: Signal<number>;
+  crit_dmg: Signal<number>;
 }
 
 export function OPCompResult(props: OPCompResultProps) {
-  const { weapon, player, enemy, equipment, avg_dmg } = props;
+  const { weapon, player, enemy, equipment, avg_dmg, min_dmg, crit_dmg } =
+    props;
 
   const damage_bonus = calcDamageBonus(equipment) *
     (1 + weapon.potential_damage_bounous.damage_bonus / 100);
 
-  const minimum_weapon_damage = calcMinimumDamageBonus(equipment) *
-        (1 + weapon.potential_damage_bounous.minimum_power_bonus / 100) *
-        weapon.minimum_power_percent > 100
-    ? 1
-    : calcMinimumDamageBonus(equipment) *
-      (1 + weapon.potential_damage_bounous.minimum_power_bonus / 100) *
-      weapon.minimum_power_percent;
+  const minimum_weapon_damage = calcMinimumWeaponDamage(weapon, equipment);
 
   const critical_damage_bonus = calcCriticalDamageBonus(equipment) *
     (1 + weapon.potential_damage_bounous.critical_damage_bonus / 100) *
@@ -40,13 +37,13 @@ export function OPCompResult(props: OPCompResultProps) {
     : calcCriticalPercentageBonus(equipment) +
       player.base_critical_percentage;
 
-  const crit_damage = calcDamage(
+  crit_dmg.value = calcDamage(
     weapon.offensive_power,
     player.base_offensive_power,
     enemy.defensive_power,
     damage_bonus * critical_damage_bonus,
   );
-  const minimum_damage = calcDamage(
+  min_dmg.value = calcDamage(
     weapon.offensive_power * minimum_weapon_damage / 100,
     player.base_offensive_power,
     enemy.defensive_power,
@@ -59,7 +56,7 @@ export function OPCompResult(props: OPCompResultProps) {
     damage_bonus,
   );
   avg_dmg.value = avg_damage_base * (1 - critical_percentage / 100) +
-    crit_damage * critical_percentage / 100;
+    crit_dmg.value * critical_percentage / 100;
 
   return (
     <>
@@ -100,7 +97,7 @@ export function OPCompResult(props: OPCompResultProps) {
           Critical Damage:{" "}
         </label>
         <span class="text-gray-700 dark:text-white text-sm font-bold mb-2">
-          {crit_damage}
+          {crit_dmg}
         </span>
       </div>{" "}
       <div>
@@ -108,7 +105,7 @@ export function OPCompResult(props: OPCompResultProps) {
           Minimum Damage:{" "}
         </label>
         <span class="text-gray-700 dark:text-white text-sm font-bold mb-2">
-          {minimum_damage}
+          {min_dmg}
         </span>
       </div>{" "}
       <div>
