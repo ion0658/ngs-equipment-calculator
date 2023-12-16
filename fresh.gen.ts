@@ -4,20 +4,31 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
+import * as $compare_op_index from "./routes/compare_op/index.tsx";
+import * as $compare_weapon_index from "./routes/compare_weapon/index.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $TabViewBody from "./islands/TabViewBody.tsx";
-import * as $TabViewHeader from "./islands/TabViewHeader.tsx";
+import * as $compare_op_islands_OPCompView from "./routes/compare_op/(_islands)/OPCompView.tsx";
+import * as $compare_op_islands_ShowOPCompResultView from "./routes/compare_op/(_islands)/ShowOPCompResultView.tsx";
+import * as $compare_weapon_islands_WeaponCompView from "./routes/compare_weapon/(_islands)/WeaponCompView.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
+    "./routes/compare_op/index.tsx": $compare_op_index,
+    "./routes/compare_weapon/index.tsx": $compare_weapon_index,
     "./routes/index.tsx": $index,
   },
   islands: {
-    "./islands/TabViewBody.tsx": $TabViewBody,
-    "./islands/TabViewHeader.tsx": $TabViewHeader,
+    "./routes/compare_op/(_islands)/OPCompView.tsx":
+      $compare_op_islands_OPCompView,
+    "./routes/compare_op/(_islands)/ShowOPCompResultView.tsx":
+      $compare_op_islands_ShowOPCompResultView,
+    "./routes/compare_weapon/(_islands)/WeaponCompView.tsx":
+      $compare_weapon_islands_WeaponCompView,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

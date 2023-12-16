@@ -1,13 +1,6 @@
 import { useSignal } from "@preact/signals";
-import type { Character, Equipment, Weapon } from "../libs/type.d.ts";
-import { OPCompResult } from "./inputs/OPCompResult.tsx";
-import {
-  calcCriticalDamageBonus,
-  calcCriticalPercentageBonus,
-  calcDamage,
-  calcDamageBonus,
-  calcMinimumWeaponDamage,
-} from "../libs/lib.ts";
+import type { Character, Equipment, Weapon } from "../../../libs/type.d.ts";
+import { OPCompResult } from "../../../components/inputs/OPCompResult.tsx";
 
 interface ShowOPCompResultProps {
   weapon: Weapon;

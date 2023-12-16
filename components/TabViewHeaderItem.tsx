@@ -1,26 +1,23 @@
-import type { Signal } from "@preact/signals";
-
 interface TabViewHeaderItemProps {
-  item_index: number;
   label: string;
-  selected_index: Signal<number>;
+  path: string;
+  current_path: string;
 }
 
 export function TabViewHeaderItem(props: TabViewHeaderItemProps) {
-  const { item_index, label, selected_index } = props;
+  const { label, path, current_path } = props;
   return (
     <li class="me-2">
-      <button
-        type="button"
+      <a
         class={`inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 ${
-          selected_index.value === item_index
+          path === current_path
             ? "text-blue-600 border-blue-600 dark:text-blue-500 dark:border-blue-500"
             : ""
         }`}
-        onClick={() => selected_index.value = item_index}
+        href={path}
       >
         {label}
-      </button>
+      </a>
     </li>
   );
 }
