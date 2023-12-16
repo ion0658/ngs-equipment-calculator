@@ -2,7 +2,6 @@ import { FreshContext } from "$fresh/server.ts";
 import { TabViewHeaderItem } from "../components/TabViewHeaderItem.tsx";
 
 export default function Home(ctx: FreshContext) {
-  console.log(ctx.url.pathname);
   const items = [
     {
       label: "Compare OP",
