@@ -3,14 +3,16 @@ import { type Signal, useSignal } from "@preact/signals";
 import { EquipmentItemInput } from "./EquipmentItemInput.tsx";
 import { Ref, useRef, useState } from "preact/hooks";
 import { Dialog } from "./Dialog.tsx";
-import { load } from "$std/dotenv/mod.ts";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface EquipmentInputProps {
-  //   label: string;
   equipment: Signal<Equipment>;
 }
 
 export function EquipmentInput(props: EquipmentInputProps) {
+  if (!IS_BROWSER) {
+    return <></>;
+  }
   const { equipment } = props;
   const show_detail = useSignal(true);
   const load_dialog_ref = useRef<HTMLDialogElement>(null);
