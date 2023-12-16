@@ -1,8 +1,9 @@
 import type { Equipment, EquipmentItem } from "../../libs/type.d.ts";
 import { type Signal, useSignal } from "@preact/signals";
 import { EquipmentItemInput } from "./EquipmentItemInput.tsx";
-import { Ref, useRef } from "preact/hooks";
+import { Ref, useRef, useState } from "preact/hooks";
 import { Dialog } from "./Dialog.tsx";
+import { load } from "$std/dotenv/mod.ts";
 
 interface EquipmentInputProps {
   //   label: string;
@@ -14,6 +15,9 @@ export function EquipmentInput(props: EquipmentInputProps) {
   const show_detail = useSignal(true);
   const load_dialog_ref = useRef<HTMLDialogElement>(null);
   const save_dialog_ref = useRef<HTMLDialogElement>(null);
+  const [equipment_label, set_equipment_label] = useState(
+    equipment.value.label,
+  );
 
   const open_dialog = (ref: Ref<HTMLDialogElement>) => {
     if (ref.current) {
@@ -25,6 +29,33 @@ export function EquipmentInput(props: EquipmentInputProps) {
       ref.current.close();
     }
   };
+
+  const save_equipments = (equipment: Equipment) => {
+    localStorage.setItem(
+      `equipment_${equipment.label}`,
+      JSON.stringify(equipment),
+    );
+  };
+
+  const remove_equipment = (label: string) => {
+    localStorage.removeItem(`equipment_${label}`);
+  };
+
+  const load_equipments = () => {
+    const equipments = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith("equipment_")) {
+        const equipment = localStorage.getItem(key);
+        if (equipment) {
+          equipments.push(JSON.parse(equipment));
+        }
+      }
+    }
+    return equipments;
+  };
+
+  const [equipment_list, set_equipment_list] = useState(load_equipments());
 
   return (
     <>
@@ -134,7 +165,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
         dialog_ref={load_dialog_ref}
         close={() => close_dialog(load_dialog_ref)}
       >
-        <div class="relative  w-full max-w-2xl max-h-full">
+        <div class="relative w-full min-w-fit max-h-full">
           {/* <!-- Modal content --> */}
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             {/* <!-- Modal header --> */}
@@ -169,24 +200,36 @@ export function EquipmentInput(props: EquipmentInputProps) {
             </div>
             {/* <!-- Modal body --> */}
             <div class="p-4 md:p-5 space-y-4">
-              <select>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-              </select>
-            </div>
-            {/* <!-- Modal footer --> */}
-            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button
-                data-modal-hide="default-modal"
-                type="button"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                onClick={() => {
-                  close_dialog(load_dialog_ref);
-                }}
-              >
-                Load
-              </button>
+              {equipment_list.map((eq) => {
+                return (
+                  <div class="w-full flex">
+                    <label class="flex-1 my-auto m-1 me-2 text-sm font-medium text-gray-900 dark:text-white">
+                      {eq.label}
+                    </label>
+                    <button
+                      type="button"
+                      class="flex ms-auto me-1 my-auto p-1 border rounded border-yellow-700 dark:border-yellow-300 text-yellow-700 dark:text-yellow-300 hover:bg-yellow-700 hover:text-white dark:hover:text-white dark:hover:bg-yellow-300"
+                      onClick={() => {
+                        equipment.value = eq;
+                        close_dialog(load_dialog_ref);
+                      }}
+                    >
+                      Load
+                    </button>
+                    <button
+                      type="button"
+                      class="flex mx-1 my-auto p-1 border rounded border-red-700 dark:border-red-300 text-red-700 dark:text-red-300 hover:bg-red-700 hover:text-white dark:hover:text-white dark:hover:bg-red-300"
+                      onClick={() => {
+                        remove_equipment(eq.label);
+                        set_equipment_list(load_equipments());
+                        close_dialog(load_dialog_ref);
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -195,7 +238,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
         dialog_ref={save_dialog_ref}
         close={() => close_dialog(save_dialog_ref)}
       >
-        <div class="relative  w-full max-w-2xl max-h-full">
+        <div class="relative w-full min-w-fit max-h-full">
           {/* <!-- Modal content --> */}
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             {/* <!-- Modal header --> */}
@@ -230,24 +273,38 @@ export function EquipmentInput(props: EquipmentInputProps) {
             </div>
             {/* <!-- Modal body --> */}
             <div class="p-4 md:p-5 space-y-4">
-              <select>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-              </select>
-            </div>
-            {/* <!-- Modal footer --> */}
-            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button
-                data-modal-hide="default-modal"
-                type="button"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                onClick={() => {
-                  close_dialog(save_dialog_ref);
-                }}
+              <label
+                for="save_equip_label"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Save
-              </button>
+                Equipment Label
+              </label>
+              <div class="relative">
+                <input
+                  id="save_equip_label"
+                  type="text"
+                  value={equipment_label}
+                  class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={(e) => set_equipment_label(e.currentTarget.value)}
+                />
+                <button
+                  data-modal-hide="default-modal"
+                  type="button"
+                  class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  onClick={() => {
+                    const tmp = {
+                      ...equipment.value,
+                      label: equipment_label,
+                    };
+                    save_equipments(tmp);
+                    set_equipment_list(load_equipments());
+                    equipment.value = tmp;
+                    close_dialog(save_dialog_ref);
+                  }}
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </div>
         </div>
