@@ -10,9 +10,6 @@ interface EquipmentInputProps {
 }
 
 export function EquipmentInput(props: EquipmentInputProps) {
-  if (!IS_BROWSER) {
-    return <></>;
-  }
   const { equipment } = props;
   const show_detail = useSignal(true);
   const load_dialog_ref = useRef<HTMLDialogElement>(null);
@@ -44,7 +41,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
     localStorage.removeItem(`equipment_${label}`);
   };
 
-  const load_equipments = () => {
+  const load_equipments = (): Equipment[] => {
     const equipments = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
@@ -58,7 +55,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
     return equipments;
   };
 
-  const [equipment_list, set_equipment_list] = useState(load_equipments());
+  const [equipment_list, set_equipment_list] = useState<Equipment[]>([]);
 
   return (
     <>
