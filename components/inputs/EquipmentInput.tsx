@@ -23,6 +23,7 @@ export function EquipmentInput(props: EquipmentInputProps) {
 
   const open_dialog = (ref: Ref<HTMLDialogElement>) => {
     if (ref.current) {
+      set_equipment_list(load_equipments());
       ref.current.showModal();
     }
   };
@@ -223,7 +224,6 @@ export function EquipmentInput(props: EquipmentInputProps) {
                       class="flex mx-1 my-auto p-1 border rounded border-red-700 dark:border-red-300 text-red-700 dark:text-red-300 hover:bg-red-700 hover:text-white dark:hover:text-white dark:hover:bg-red-300"
                       onClick={() => {
                         remove_equipment(eq.label);
-                        set_equipment_list(load_equipments());
                         close_dialog(load_dialog_ref);
                       }}
                     >
@@ -299,7 +299,6 @@ export function EquipmentInput(props: EquipmentInputProps) {
                       label: equipment_label,
                     };
                     save_equipments(tmp);
-                    set_equipment_list(load_equipments());
                     equipment.value = tmp;
                     close_dialog(save_dialog_ref);
                   }}
