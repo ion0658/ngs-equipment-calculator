@@ -30,7 +30,7 @@ export function EquipmentItemInput(props: EquipmentItemInputProps) {
         {label} ({(calcDamageBonus1(equipment) - 1) * 100}% /{" "}
         {(calcMinimumDamageBonus1(equipment) - 1) * 100}% /{" "}
         {(calcCriticalDamageBonus1(equipment) - 1) * 100}% /{" "}
-        {calcCriticalPercentageBonus1(equipment) * 100}%)
+        {calcCriticalPercentageBonus1(equipment)}%)
         <svg
           data-accordion-icon
           class="ms-auto me-2 mt-1 w-3 h-3 rotate-180 shrink-0"

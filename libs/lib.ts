@@ -174,15 +174,15 @@ export function calcCriticalDamageBonus(equipment: Equipment): number {
 }
 
 export function calcCriticalPercentageBonus1(equipment: EquipmentItem): number {
-  return (equipment.base_status.critical_percentage_bonus / 100) +
-    (equipment.op1.critical_percentage_bonus / 100) +
-    (equipment.op2.critical_percentage_bonus / 100) +
-    (equipment.op3.critical_percentage_bonus / 100) +
-    (equipment.op4.critical_percentage_bonus / 100) +
-    (equipment.op5.critical_percentage_bonus / 100) +
-    (equipment.op6.critical_percentage_bonus / 100) +
-    (equipment.op7.critical_percentage_bonus / 100) +
-    (equipment.op8.critical_percentage_bonus / 100);
+  return (equipment.base_status.critical_percentage_bonus) +
+    (equipment.op1.critical_percentage_bonus) +
+    (equipment.op2.critical_percentage_bonus) +
+    (equipment.op3.critical_percentage_bonus) +
+    (equipment.op4.critical_percentage_bonus) +
+    (equipment.op5.critical_percentage_bonus) +
+    (equipment.op6.critical_percentage_bonus) +
+    (equipment.op7.critical_percentage_bonus) +
+    (equipment.op8.critical_percentage_bonus);
 }
 
 export function calcCriticalPercentageBonus(equipment: Equipment): number {
